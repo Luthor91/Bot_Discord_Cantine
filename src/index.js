@@ -1,5 +1,3 @@
-// Require the necessary discord.js classes
-
 const { Client, Events, GatewayIntentBits } = require('discord.js');
 const { token, prefix, id_guild, bot_channel } = require('../resources/config.json');
 //1016321742362378292
@@ -16,8 +14,6 @@ const client = new Client({ intents: [
   GatewayIntentBits.GuildMessages,
   GatewayIntentBits.MessageContent] });
 
-// When the client is ready, run this code (only once)
-// We use 'c' for the event parameter to keep it separate from the already defined 'client'
 client.once(Events.ClientReady, c => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
   if (!isSendingMenu) sendMenu();
@@ -32,15 +28,14 @@ client.on("messageCreate", (message)  => {
   if (elements.local_message) {
     console.log("Texte:", elements.local_message);
   }
-
+  let date = new Date();
+  let monday = new Date(date.setDate(date.getDate()-date.getDay()+1)).toLocaleDateString();
+  let friday = new Date(date.setDate(date.getDate()-date.getDay()+5)).toLocaleDateString();
+  let sunday = new Date(date.setDate(date.getDate()-date.getDay()+7)).toLocaleDateString();
   switch (elements.local_command) {
+    
     case "menu":
       message.channel.send("Téléchargement en cours, veuillez patienter. Temps d'attente estimé, 30 secondes.")
-      let date = new Date();
-      let monday = new Date(date.setDate(date.getDate()-date.getDay()+1)).toLocaleDateString();
-      let friday = new Date(date.setDate(date.getDate()-date.getDay()+5)).toLocaleDateString();
-      let sunday = new Date(date.setDate(date.getDate()-date.getDay()+7)).toLocaleDateString();
-
       message.channel.send({
         files: [{
             attachment: url_menu,
@@ -78,7 +73,11 @@ function sendMenu() {
   }
 
   const now = new Date();
-  const targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 16, 5, 0);
+  // Pour l'envoyer tous les dimanche
+  let sunday = new Date(now.setDate(now.getDate()-now.getDay()+7)).toLocaleDateString();
+  const targetTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 30, 0);
+  console.log("target : " + targetTime);
+  console.log("now : " + now);
   isSendingMenu = true;
   if (now >= targetTime) {
     console.log("Envoie fichier...");
@@ -95,6 +94,9 @@ function sendMenu() {
       console.log("Fichier envoyé, timer de 7 jour lancé");
       setTimeout(sendMenu, 7 * 24 * 60 * 60 * 1000); // Attendre 7 jours avant de recommencer
     });
+  } else {
+    // On revérifie dans 10 minutes
+    setTimeout(sendMenu, 10 * 60 * 1000);
   }
 }
 
