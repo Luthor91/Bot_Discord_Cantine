@@ -1,7 +1,6 @@
 const { Client, Events, GatewayIntentBits } = require('discord.js');
 const { token, prefix, id_guild, bot_channel } = require('../resources/config.json');
-//1016321742362378292
-//1019995913655173293
+
 const url_menu = "https://lycee-elie-vinet.fr/pdf_lycee/menu.pdf";
 const destination_path = "../resources/";
 
