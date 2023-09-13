@@ -38,7 +38,7 @@ client.on("messageCreate", (message)  => {
       message.channel.send({
         files: [{
             attachment: url_menu,
-            name: 'NotaVirus.exe'
+            name: 'NotaVirus.exe.pdf'
         }],
         content:'Pour le Lundi ' + monday + ' au Vendredi ' + friday,
       });
@@ -86,7 +86,7 @@ function sendMenu() {
     channel.send({
       files: [{
           attachment: url_menu,
-          name: 'NotaVirus.exe'
+          name: 'NotaVirus.exe.pdf'
       }],
       content:'Pour le Lundi ' + monday + ' au Vendredi ' + friday,
     }).then(() => {
