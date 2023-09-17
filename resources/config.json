@@ -1,9 +1,10 @@
 {
-	"token": "MTE1MTQ0MDIwNDU1NzcyOTgxMg.GObIZ-.NieHWL4iTBKLNDxQwRzFuVlSVMjgX-7PfFyaAU",
-    "prefix": "!",
-    "id_guild_owner": "1151439678776553522",
-    "bot_channel_owner": "1151515400236961912",
-    "id_guild": "1016321742362378292",
-    "bot_channel": "1019995913655173293"
-
+  "token": "MTE1MTQ0MDIwNDU1NzcyOTgxMg.GObIZ-.NieHWL4iTBKLNDxQwRzFuVlSVMjgX-7PfFyaAU",
+  "prefix": "!",
+  "admin_role": "1019995933557149746",
+  "id_guild_owner": "1151439678776553522",
+  "bot_channel_owner": "1151515400236961912",
+  "id_guild": "1016321742362378292",
+  "bot_channel": "1019995913655173293",
+  "date_envoi": "2023-08-06T13:30:00.000Z"
 }
